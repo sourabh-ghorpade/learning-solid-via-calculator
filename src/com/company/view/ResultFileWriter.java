@@ -3,7 +3,7 @@ package com.company.view;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ResultFileWriter {
+public class ResultFileWriter implements OutputWriter {
     private String fileName;
 
     public ResultFileWriter(String fileName) {

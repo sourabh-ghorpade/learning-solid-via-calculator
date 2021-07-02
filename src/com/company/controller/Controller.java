@@ -1,20 +1,25 @@
 package com.company.controller;
 
 import com.company.models.Calculator;
-import com.company.view.ConsoleWriter;
-import com.company.view.ResultFileWriter;
+import com.company.view.OutputWriter;
 
-import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class Controller {
+    private final List<OutputWriter> writers;
+
+    public Controller(List<OutputWriter> writers) {
+        this.writers = writers;
+    }
 
     public void run() throws IOException {
         Double numberOne = 2.0, numberTwo = 2.0;
         String inputOperand = "+";
         Double result = new Calculator().calculate(numberOne, numberTwo, inputOperand);
         String outputResult = "result = " + result;
-        new ConsoleWriter().write(outputResult);
-        new ResultFileWriter("output.txt").write(outputResult);
+        for (OutputWriter writer: writers) {
+            writer.write(outputResult);
+        }
     }
 }

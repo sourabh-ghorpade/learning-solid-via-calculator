@@ -1,6 +1,7 @@
 package com.company;
 
-import java.io.File;
+import com.company.models.Calculator;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -9,13 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 	    Double numberOne = 2.0, numberTwo = 2.0;
 	    String inputOperand = "+";
-        Double result = (double) -1;
-        switch (inputOperand) {
-            case "+" : result = numberOne + numberTwo;
-            break;
-            case "*": result = numberOne * numberTwo;
-            break;
-        }
+        Double result = new Calculator().calculate(numberOne, numberTwo, inputOperand);
 	    String outputResult = "result = " + result;
         outputToConsole(outputResult);
         outputToFile(outputResult);

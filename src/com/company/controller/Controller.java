@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class Controller {
-    private final List<OutputWriter> writers;
+    private OutputWriter writer;
 
-    public Controller(List<OutputWriter> writers) {
-        this.writers = writers;
+    public Controller(OutputWriter writer) {
+        this.writer = writer;
     }
 
     public void run() throws IOException {
@@ -18,8 +18,6 @@ public class Controller {
         String inputOperand = "+";
         Double result = new Calculator().calculate(numberOne, numberTwo, inputOperand);
         String outputResult = "result = " + result;
-        for (OutputWriter writer: writers) {
-            writer.write(outputResult);
-        }
+        writer.write(outputResult);
     }
 }

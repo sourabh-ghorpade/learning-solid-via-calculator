@@ -1,6 +1,8 @@
 package com.company.controller;
 
 import com.company.models.Calculator;
+import com.company.view.ConsoleWriter;
+import com.company.view.ResultFileWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,17 +14,7 @@ public class Controller {
         String inputOperand = "+";
         Double result = new Calculator().calculate(numberOne, numberTwo, inputOperand);
         String outputResult = "result = " + result;
-        outputToConsole(outputResult);
-        outputToFile(outputResult);
-    }
-
-    private void outputToFile(String outputResult) throws IOException {
-        FileWriter myWriter = new FileWriter("output.txt");
-        myWriter.write(outputResult);
-        myWriter.close();
-    }
-
-    private void outputToConsole(String outputResult) {
-        System.out.println(outputResult);
+        new ConsoleWriter().write(outputResult);
+        new ResultFileWriter("output.txt").write(outputResult);
     }
 }
